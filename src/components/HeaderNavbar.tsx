@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {
   Navbar,
   Typography,
@@ -47,20 +48,24 @@ export default function HeaderNavbar() {
     <>
       <Navbar className="sticky top z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
+          <Link to="/">
           <Typography
             as="img"
             src={logo}
             className="mr-4 cursor-pointer py-1.5 max-h-10"
-          />
+            />
+            </Link>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
+            <Link to={"/login"}>
             <Button
               variant="gradient"
               size="sm"
               className="hidden lg:inline-block"
-            >
+              >
                <span>Sign in</span>
             </Button>
+              </Link>
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

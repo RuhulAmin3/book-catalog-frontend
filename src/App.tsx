@@ -1,7 +1,7 @@
 import MainLayout from "./layout/MainLayout"
 
 function App() {
-  return (<MainLayout></MainLayout>)
+  return (<></>)
 }
 
 export default App
