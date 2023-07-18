@@ -1,6 +1,6 @@
+import Footer from '../components/Footer'
 import HeaderNavbar from '../components/HeaderNavbar'
 import Searchbar from '../components/Searchbar'
-import Sidebar from '../components/Sidebar'
 import {Outlet} from "react-router-dom"
 const MainLayout = () => {
   return (
@@ -16,6 +16,7 @@ const MainLayout = () => {
             {/* </div> */}
          </div>
      </div>
+     <Footer/>
     </>
   )
 }
