@@ -27,9 +27,29 @@ export default function HeaderNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           Home
-        </a>
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <Link to="/all-books" className="flex items-center">
+          All Books
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <Link to="/add-book" className="flex items-center">
+          Add Book
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -58,7 +78,7 @@ export default function HeaderNavbar() {
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <Link to={"/login"}>
-            <Button
+            <Button color="green"
               variant="gradient"
               size="sm"
               className="hidden lg:inline-block"
@@ -107,7 +127,7 @@ export default function HeaderNavbar() {
         </div>
         <Collapse open={openNav}>
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
+          <Button color="green" variant="gradient" size="sm" fullWidth className="mb-2">
             <span>Sign in</span>
           </Button>
         </Collapse>

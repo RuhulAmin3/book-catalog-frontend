@@ -30,7 +30,7 @@ export default function LoginPage() {
             <Input label="Password" size="lg" />
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" fullWidth>
+            <Button color="green" variant="gradient" fullWidth>
               Sign In
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">

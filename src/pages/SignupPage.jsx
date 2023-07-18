@@ -32,7 +32,7 @@ export default function SignupPage() {
             <Input label="Password" size="lg" />
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" fullWidth>
+            <Button color="green" variant="gradient" fullWidth>
               Create Account
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">

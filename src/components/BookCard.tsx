@@ -25,7 +25,7 @@ import {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          <Button>Details</Button>
+          <Button color="green">Details</Button>
         </CardFooter>
       </Card>
     );

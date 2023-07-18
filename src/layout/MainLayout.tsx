@@ -13,8 +13,9 @@ const MainLayout = () => {
          <div className='col-span-9 p-4'>
             <div>
                 <Searchbar/>
-                
+                <div className='my-6'>
                  <Outlet/>
+                </div>
             </div>
          </div>
      </div>

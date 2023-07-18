@@ -16,7 +16,7 @@ export default function Example() {
             placeholder="search by title, author and genre..."
             className="min-w-full"
             />
-            <Button>Search</Button>
+            <Button color="green">Search</Button>
             </div>
       </figcaption>
     </figure>
