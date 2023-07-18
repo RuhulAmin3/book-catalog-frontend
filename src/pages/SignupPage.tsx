@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import {
   CardHeader,
   CardBody,
@@ -10,9 +11,15 @@ import {
   Button,
 } from "@material-tailwind/react";
 import HeaderNavbar from "../components/HeaderNavbar";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FormEvent, useState , useEffect} from "react";
 import { toast } from "react-hot-toast";
+import {
+  useSignupUserMutation,
+} from "../redux/user/userApi";
+import { setUser } from "../redux/user/userSlice";
+import { useAppDispatch } from "../redux/hook";
+import { UserType } from "../types/user";
 
 export default function SignupPage() {
   const [userData, setUserData] = useState({
@@ -22,17 +29,46 @@ export default function SignupPage() {
     password: "",
     confirmPassword: "",
   });
-  const handleChange = (field, value) => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [signupUser, result] = useSignupUserMutation();
+  const handleChange = (field:string, value:string) => {
     setUserData({ ...userData, [field]: value });
   };
-  const handleSubmit = (e) => {
-    const { password, confirmPassword } = userData;
+
+  const resetForm = ()=>{
+    setUserData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    })
+  }
+
+  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+    const { password, confirmPassword, firstName, lastName, email } = userData;
     e.preventDefault();
     if (password !== confirmPassword) {
       return toast.error("password doesn't match");
     }
-    console.log(userData);
+    signupUser({ firstName, lastName, email, password })
   };
+
+  useEffect(()=>{
+    if(result.isSuccess){
+      toast.success("user create successful");
+      navigate("/")
+      resetForm();
+      dispatch(setUser({
+        user:result?.data?.data as UserType, 
+        token:result?.data?.accessToken as string}
+        ))
+      console.log(result.data)
+    }else if(result.isError){
+      toast.error(result?.error?.data?.errorMessages[0]?.message as string);
+    }
+  }, [result?.isSuccess, result?.data, result?.isError])
 
   return (
     <>
