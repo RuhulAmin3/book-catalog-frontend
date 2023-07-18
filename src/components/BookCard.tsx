@@ -7,6 +7,8 @@ import {
     Typography,
     Button
   } from "@material-tailwind/react";
+  import {ArrowLongRightIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
    
   export default function BookCard() {
     return (
@@ -20,12 +22,14 @@ import {
           </Typography>
           <Typography>
             Description: The place is close to Barceloneta Beach and bus stop just 2 min by walk
-            and near to &quot;Naviglio&quot; where you can enjoy the main night life
-            in Barcelona.
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          <Button color="green">Details</Button>
+        <Link to="/details/1">
+        <Button variant="text" color="green" className="flex items-center gap-2">
+        Read More <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
+      </Button>
+          </Link>
         </CardFooter>
       </Card>
     );

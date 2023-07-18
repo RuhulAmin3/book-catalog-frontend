@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Link} from "react-router-dom";
 import {
   Navbar,
@@ -12,7 +12,7 @@ import logo from "../assets/logo.png";
 export default function HeaderNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
  
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)

@@ -18,7 +18,7 @@ export default function SignupPage() {
         <Card className="w-96">
           <CardHeader
             variant="gradient"
-            color="blue"
+            color="green"
             className="mb-4 grid h-28 place-items-center"
           >
             <Typography variant="h3" color="white">
@@ -26,10 +26,10 @@ export default function SignupPage() {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input label="First Name" size="lg" />
-            <Input label="Last Name" size="lg" />
-            <Input label="Email" size="lg" />
-            <Input label="Password" size="lg" />
+            <Input color="green" label="First Name" size="lg" />
+            <Input color="green" label="Last Name" size="lg" />
+            <Input color="green" label="Email" size="lg" />
+            <Input color="green" label="Password" size="lg" />
           </CardBody>
           <CardFooter className="pt-0">
             <Button color="green" variant="gradient" fullWidth>
@@ -40,7 +40,7 @@ export default function SignupPage() {
               <Link to="/login">
                 <Typography
                   variant="small"
-                  color="blue"
+                  color="green"
                   className="ml-1 font-bold"
                 >
                   Sign in

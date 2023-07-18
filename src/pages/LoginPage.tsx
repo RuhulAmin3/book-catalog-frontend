@@ -18,7 +18,7 @@ export default function LoginPage() {
         <Card className="w-96" style={{ scrollbarWidth: 'thin' }}>
           <CardHeader
             variant="gradient"
-            color="blue"
+            color="green"
             className="mb-4 grid h-28 place-items-center"
           >
             <Typography variant="h3" color="white">
@@ -26,8 +26,8 @@ export default function LoginPage() {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input label="Email" size="lg" />
-            <Input label="Password" size="lg" />
+            <Input color="green" label="Email" size="lg" />
+            <Input color="green" label="Password" size="lg" />
           </CardBody>
           <CardFooter className="pt-0">
             <Button color="green" variant="gradient" fullWidth>
@@ -38,7 +38,7 @@ export default function LoginPage() {
               <Link to="/signup">
                 <Typography
                   variant="small"
-                  color="blue"
+                  color="green"
                   className="ml-1 font-bold"
                 >
                   Sign up
