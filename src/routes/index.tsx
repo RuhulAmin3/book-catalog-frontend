@@ -7,41 +7,49 @@ import AllBooks from "../pages/AllBooks";
 import AddBook from "../pages/AddBook";
 import EditBook from "../pages/EditBook";
 import BookDetails from "../pages/BookDetails";
+import PublicRoute from "./PublicRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<MainLayout></MainLayout>,
-    children:[
+    element: <MainLayout></MainLayout>,
+    children: [
       {
-        path:"/",
-        element:<LatestBooks/>
+        path: "/",
+        element: <LatestBooks />
       },
       {
-        path:"/all-books",
-        element:<AllBooks/>
+        path: "/all-books",
+        element: <AllBooks />
       },
       {
-        path:"/details/:id",
-        element:<BookDetails/>
+        path: "/details/:id",
+        element: <BookDetails />
       }
     ],
   },
   {
-    path:"/add-book",
-    element:<AddBook/>
+    path: "/add-book",
+    element: <PrivateRoute>
+      <AddBook />
+    </PrivateRoute>
   },
   {
-    path:"/edit-book/:id",
-    element:<EditBook/>
+    path: "/edit-book/:id",
+    element: <EditBook />
   },
   {
-    path:"/login",
-    element:<LoginPage/>
+    path: "/login",
+    element: <PublicRoute>
+      <LoginPage />
+    </PublicRoute>
   },
   {
-    path:"/signup",
-    element:<SignupPage/>
+    path: "/signup",
+    element: <PublicRoute>
+      <SignupPage />
+    </PublicRoute>
   }
 ]);
 
