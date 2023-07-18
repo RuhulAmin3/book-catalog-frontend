@@ -10,6 +10,7 @@ import {
 import logo from "../assets/logo.png";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { logoutUser } from "../redux/user/userSlice";
+import { toast } from "react-hot-toast";
 
 export default function HeaderNavbar() {
   const [openNav, setOpenNav] = useState(false);
@@ -21,6 +22,10 @@ export default function HeaderNavbar() {
     );
   }, []);
   const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    toast.success("logout successful");
+  }
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -82,7 +87,7 @@ export default function HeaderNavbar() {
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             {user?.email ? <Button
-              onClick={() => dispatch(logoutUser())}
+              onClick={handleLogout}
               color="green"
               variant="gradient"
               size="sm"
@@ -155,7 +160,7 @@ export default function HeaderNavbar() {
               </Button>
             </Link>
           ) : <Button
-            onClick={() => dispatch(logoutUser())}
+            onClick={handleLogout}
             color="green"
             variant="gradient"
             size="sm"

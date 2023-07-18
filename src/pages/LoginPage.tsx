@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -16,8 +17,9 @@ import HeaderNavbar from "../components/HeaderNavbar";
 import { useState, FormEvent, useEffect } from "react";
 import { useLoginUserMutation } from "../redux/user/userApi";
 import { toast } from "react-hot-toast";
-import { LoginUserType } from "../types/user";
+import { LoginUserType, UserType } from "../types/user";
 import { useAppDispatch } from "../redux/hook";
+import { setUser } from "../redux/user/userSlice";
 export default function LoginPage() {
   const [loginData, setLoginData] = useState({
     email: "",
@@ -26,6 +28,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [loginUser, result] = useLoginUserMutation();
   const dispatch = useAppDispatch();
+
   const handleChange = (field: string, value: string) => {
     setLoginData({ ...loginData, [field]: value });
   };
@@ -52,7 +55,6 @@ export default function LoginPage() {
         token: result?.data?.accessToken as string
       }
       ))
-      console.log(result.data)
     } else if (result.isError) {
       toast.error(result?.error?.data?.errorMessages[0]?.message as string);
     }
@@ -63,7 +65,7 @@ export default function LoginPage() {
     <>
       <HeaderNavbar />
       <div className="flex items-center justify-center h-screen overflow-y-hidden">
-        <Card className="w-96" style={{ scrollbarWidth: 'thin' }}>
+        <form className="w-96" style={{ scrollbarWidth: 'thin' }} onSubmit={handleSubmit}>
           <CardHeader
             variant="gradient"
             color="green"
@@ -74,11 +76,12 @@ export default function LoginPage() {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input color="green" label="Email" size="lg" />
-            <Input color="green" label="Password" size="lg" />
+            <Input color="green" label="Email" size="lg" type="email" onChange={(e) => handleChange("email", e.target.value)} />
+            <Input color="green" label="Password" size="lg" type="password"
+              onChange={(e) => handleChange("password", e.target.value)} />
           </CardBody>
           <CardFooter className="pt-0">
-            <Button color="green" variant="gradient" fullWidth>
+            <Button type="submit" color="green" variant="gradient" fullWidth>
               Sign In
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">
@@ -94,7 +97,7 @@ export default function LoginPage() {
               </Link>
             </Typography>
           </CardFooter>
-        </Card>
+        </form>
       </div>
     </>
   );
