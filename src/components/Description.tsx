@@ -1,5 +1,6 @@
 import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+
 const Description = ({ title, author, description, price }) => {
   return (
     <div className="w-full flex gap-2 justify-between">
