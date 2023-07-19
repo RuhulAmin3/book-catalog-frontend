@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-
 import {
   Card,
   CardHeader,
@@ -17,6 +16,7 @@ interface IProps {
 }
 export default function BookCard({ book }: IProps) {
   console.log(book.description.length);
+
   return (
     <Card className="mt-6 min-w-80">
       <CardHeader color="blue-gray" className="relative h-56">

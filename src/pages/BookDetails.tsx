@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Button, CardBody, CardHeader, Typography } from "@material-tailwind/react"
+import { CardBody, CardHeader } from "@material-tailwind/react"
 import {
   Tabs,
   TabsHeader,

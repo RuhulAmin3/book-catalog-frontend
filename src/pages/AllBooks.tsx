@@ -5,9 +5,11 @@ import BookCard from '../components/BookCard'
 import Linebar from '../components/Linebar'
 import Loading from '../components/Loading';
 import { useGetAllBookQuery } from '../redux/book/bookApi';
+import { useAppSelector } from '../redux/hook';
 import { BookType } from '../types/user';
 
 const AllBooks = () => {
+  const { searchText } = useAppSelector(state => state.search)
   const { data, isLoading, isError, isSuccess } = useGetAllBookQuery();
   let content;
   if (isLoading) {
@@ -15,7 +17,10 @@ const AllBooks = () => {
   } else if (!isLoading && isError) {
     content = "something is wrong try again later"
   } else if (!isLoading && !isError && isSuccess) {
-    content = data?.data?.map((book: BookType, idx: string) => <BookCard key={idx} book={book} />)
+    content = data?.data?.filter((book: BookType) =>
+      book.title.toLowerCase().includes(searchText.toLowerCase()) || book.author.toLowerCase().includes(searchText.toLowerCase()) ||
+      book.genre.toLowerCase().includes(searchText.toLowerCase())
+    ).map((book: BookType, idx: string) => <BookCard key={idx} book={book} />)
   }
   return (
     <>

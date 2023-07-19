@@ -8,8 +8,10 @@ import { Link } from 'react-router-dom'
 import { useGetAllBookQuery } from '../redux/book/bookApi'
 import Loading from '../components/Loading'
 import { BookType } from '../types/user'
+import { useAppSelector } from '../redux/hook'
 
 const LatestBooks = () => {
+  const { searchText } = useAppSelector(state => state.search)
   const { data, isLoading, isError, isSuccess } = useGetAllBookQuery();
   let content;
   if (isLoading) {
@@ -17,8 +19,11 @@ const LatestBooks = () => {
   } else if (!isLoading && isError) {
     content = "something is wrong try again later"
   } else if (!isLoading && !isError && isSuccess) {
-    console.log(data?.data)
-    content = data?.data?.slice(0, 8).map((book: BookType, idx: string) => <BookCard key={idx} book={book} />)
+    content = data?.data?.slice(0, 8)
+      .filter((book: BookType) =>
+        book.title.toLowerCase().includes(searchText.toLowerCase()) || book.author.toLowerCase().includes(searchText.toLowerCase()) ||
+        book.genre.toLowerCase().includes(searchText.toLowerCase())
+      ).map((book: BookType, idx: string) => <BookCard key={idx} book={book} />)
   }
   return (
     <>

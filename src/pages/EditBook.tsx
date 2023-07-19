@@ -56,13 +56,11 @@ export default function EditBook() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newBookData = { ...bookData, price: Number(bookData.price), user: user?._id }
-    editBook({ id: id, data: newBookData })
+    editBook({ id: id as string, data: newBookData })
   };
 
   useEffect(() => {
     if (isSuccess) {
-      // toast.success("book added successfully");
-      // const { data } = data;
       setBookData({
         title: data?.data.title,
         author: data?.data.author,
@@ -75,7 +73,7 @@ export default function EditBook() {
     } else if (isError) {
       toast.error(error?.data?.errorMessages[0]?.message as string);
     }
-  }, [isSuccess, data, isError]);
+  }, [isSuccess, data, isError, error?.data?.errorMessages]);
 
   useEffect(() => {
     if (result.isSuccess) {
@@ -85,7 +83,7 @@ export default function EditBook() {
     } else if (result.isError) {
       toast.error(result?.error?.data?.errorMessages[0]?.message as string);
     }
-  }, [result?.isSuccess, result?.data, result?.isError])
+  }, [result.isSuccess, result.data, result.isError, result?.error?.data?.errorMessages, navigate])
 
 
   return (
