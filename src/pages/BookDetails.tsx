@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Button, CardBody, CardHeader, Typography } from "@material-tailwind/react"
@@ -9,7 +10,7 @@ import {
   TabPanel,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import AddReview from "../components/AddReview";
 import Description from "../components/Description";
 import Reviews from "../components/Reviews";
@@ -26,7 +27,6 @@ const BookDetails = () => {
   } else if (!isLoading && isError) {
     return content = "something is wrong"
   } else if (!isLoading && !isError && isSuccess) {
-    const { title, description, author, price, cover, _id } = book?.data || {};
     const data = [
       {
         label: "Description",
@@ -36,12 +36,12 @@ const BookDetails = () => {
       {
         label: "Add Review",
         value: "review",
-        desc: <AddReview />,
+        desc: <AddReview id={id as string} />,
       },
       {
         label: "Reviews",
         value: "reviews",
-        desc: <Reviews />,
+        desc: <Reviews id={id as string} />,
       }
     ]
     content = <div className="grid grid-cols-12">

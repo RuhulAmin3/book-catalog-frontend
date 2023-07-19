@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 
 import {
   Card,
@@ -30,7 +31,7 @@ export default function BookCard({ book }: IProps) {
         </Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        <Link to={`/details/${book?.id}`}>
+        <Link to={`/details/${book?._id}`}>
           <Button variant="text" color="green" className="flex items-center gap-2">
             Read More <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
           </Button>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-floating-promises */
@@ -6,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDeleteBookMutation } from "../redux/book/bookApi";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
+
 interface IProps {
   book: {
     _id: string;
