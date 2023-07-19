@@ -31,7 +31,7 @@ const Description = ({ book }: IProps) => {
       toast.success("book delete successful");
       navigate("/")
     } else if (result.isError) {
-      toast.error(result?.error?.data?.errorMessages[0]?.message as string);
+      toast.error("something is wrong");
     }
   }, [result?.isSuccess, result?.data, result?.isError])
 

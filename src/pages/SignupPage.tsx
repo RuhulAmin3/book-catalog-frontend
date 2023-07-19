@@ -12,7 +12,7 @@ import {
 } from "@material-tailwind/react";
 import HeaderNavbar from "../components/HeaderNavbar";
 import { Link, useNavigate } from "react-router-dom";
-import { FormEvent, useState , useEffect} from "react";
+import { FormEvent, useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import {
   useSignupUserMutation,
@@ -32,11 +32,11 @@ export default function SignupPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [signupUser, result] = useSignupUserMutation();
-  const handleChange = (field:string, value:string) => {
+  const handleChange = (field: string, value: string) => {
     setUserData({ ...userData, [field]: value });
   };
 
-  const resetForm = ()=>{
+  const resetForm = () => {
     setUserData({
       firstName: "",
       lastName: "",
@@ -46,7 +46,7 @@ export default function SignupPage() {
     })
   }
 
-  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     const { password, confirmPassword, firstName, lastName, email } = userData;
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -55,18 +55,19 @@ export default function SignupPage() {
     signupUser({ firstName, lastName, email, password })
   };
 
-  useEffect(()=>{
-    if(result.isSuccess){
+  useEffect(() => {
+    if (result.isSuccess) {
       toast.success("user create successful");
       navigate("/")
       resetForm();
       dispatch(setUser({
-        user:result?.data?.data as UserType, 
-        token:result?.data?.accessToken as string}
-        ))
+        user: result?.data?.data as UserType,
+        token: result?.data?.accessToken as string
+      }
+      ))
       console.log(result.data)
-    }else if(result.isError){
-      toast.error(result?.error?.data?.errorMessages[0]?.message as string);
+    } else if (result.isError) {
+      toast.error("something is wrong");
     }
   }, [result?.isSuccess, result?.data, result?.isError])
 

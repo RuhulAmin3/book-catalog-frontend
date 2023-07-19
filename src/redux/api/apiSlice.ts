@@ -6,7 +6,7 @@ import { RootState } from "../store";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1",
+    baseUrl: "https://book-catalog-backend-ruhulamin3.vercel.app/api/v1",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState)?.user?.token;
       if (token) {

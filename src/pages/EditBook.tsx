@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-floating-promises */
@@ -21,7 +22,7 @@ export default function EditBook() {
   const { id } = useParams();
   const { user } = useAppSelector(state => state.user);
   const [editBook, result] = useEditBookMutation();
-  const { data, isError, isSuccess, error } = useGetBookQuery(
+  const { data, isError, isSuccess } = useGetBookQuery(
     id as string, {
     refetchOnMountOrArgChange: true
   }
@@ -71,9 +72,9 @@ export default function EditBook() {
         description: data?.data.description,
       });
     } else if (isError) {
-      toast.error(error?.data?.errorMessages[0]?.message as string);
+      toast.error("something is wrong");
     }
-  }, [isSuccess, data, isError, error?.data?.errorMessages]);
+  }, [isSuccess, data, isError]);
 
   useEffect(() => {
     if (result.isSuccess) {
@@ -81,9 +82,9 @@ export default function EditBook() {
       navigate("/")
       resetForm();
     } else if (result.isError) {
-      toast.error(result?.error?.data?.errorMessages[0]?.message as string);
+      toast.error("something is wrong");
     }
-  }, [result.isSuccess, result.data, result.isError, result?.error?.data?.errorMessages, navigate])
+  }, [result.isSuccess, result.data, result.isError, navigate])
 
 
   return (

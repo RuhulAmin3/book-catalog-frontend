@@ -1,13 +1,9 @@
 import { Button, Input } from "@material-tailwind/react";
 import homeImg from "../assets/Homepage.jpg";
-import { useState, FormEvent } from "react";
 import { useAppDispatch } from "../redux/hook";
 import { setSearchText } from "../redux/search/searchSlice";
 export default function Searchbar() {
-  // const [search, setSearch] = useState("");
   const dispatch = useAppDispatch();
-
-
   return (
     <figure className="h-full w-full">
       <img

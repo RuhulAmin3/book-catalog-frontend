@@ -12,7 +12,7 @@ import { useAppSelector } from '../redux/hook'
 
 const LatestBooks = () => {
   const { searchText } = useAppSelector(state => state.search)
-  const { data, isLoading, isError, isSuccess } = useGetAllBookQuery();
+  const { data, isLoading, isError, isSuccess } = useGetAllBookQuery(undefined);
   let content;
   if (isLoading) {
     content = <Loading />

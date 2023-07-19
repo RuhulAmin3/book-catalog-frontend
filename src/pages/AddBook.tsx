@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-floating-promises */
+/* https://typescript-eslint.io/rules/no-unsafe-assignment */
 import {
   Card,
   Input,
@@ -11,7 +13,7 @@ import {
 import HeaderNavbar from "../components/HeaderNavbar";
 import { useState, useEffect, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { useAppSelector } from "../redux/hook";
 import { useAddBookMutation } from "../redux/book/bookApi";
 import { toast } from "react-hot-toast";
 
@@ -58,7 +60,7 @@ export default function AddBook() {
       navigate("/")
       resetForm();
     } else if (result.isError) {
-      toast.error(result?.error?.data?.errorMessages[0]?.message as string);
+      toast.error("something is wrong")
     }
   }, [result?.isSuccess, result?.data, result?.isError])
 

@@ -19,7 +19,7 @@ import Loading from "../components/Loading";
 
 const BookDetails = () => {
   const { id } = useParams();
-  const [activeTab, setActiveTab] = useState("description");
+  const [activeTab] = useState("description");
   const { data: book, isError, isSuccess, isLoading } = useGetBookQuery(id as string);
   let content;
   if (isLoading) {

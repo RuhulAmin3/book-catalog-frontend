@@ -4,7 +4,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import {
-  Card,
   CardHeader,
   CardBody,
   CardFooter,
@@ -56,7 +55,7 @@ export default function LoginPage() {
       }
       ))
     } else if (result.isError) {
-      toast.error(result?.error?.data?.errorMessages[0]?.message as string);
+      toast.error("something is wrong");
     }
   }, [result?.isSuccess, result?.data, result?.isError])
 

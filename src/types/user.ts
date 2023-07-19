@@ -20,3 +20,16 @@ export type BookType = {
   cover: string;
   description: string;
 };
+
+export type GenericErrorMessageType = {
+  path: string | number;
+  message: string;
+};
+
+export type GenericErrorResponseType = {
+  data: {
+    statusCode: number;
+    message: string;
+    errorMessages: GenericErrorMessageType[];
+  };
+};
